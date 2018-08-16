@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION as int
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
+    api "me.jessyan:rxerrorhandler:${RX_ERROR_HANDLER_VERSION}"
+    api "com.google.code.gson:gson:${GSON_VERSION}"
+
+    api "io.reactivex.rxjava2:rxkotlin:${RXKOTLIN_VERSION}"
+
+    //Rxlifecycle
+    api "com.trello.rxlifecycle2:rxlifecycle:${RX_LIFECYCLE_VERSION}"
+    api "com.trello.rxlifecycle2:rxlifecycle-kotlin:${RX_LIFECYCLE_VERSION}"
+
+    api "org.greenrobot:eventbus:${EVENT_BUS_VERSION}"
+
+    //dagger2d
+    api "com.google.dagger:dagger:${DAGGER_VERSION}"
+    kapt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+
+    api "com.google.dagger:dagger-android-support:${DAGGER_VERSION}"
+    kapt "com.google.dagger:dagger-android-processor:${DAGGER_VERSION}"
+
+    api "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
+    kapt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}
