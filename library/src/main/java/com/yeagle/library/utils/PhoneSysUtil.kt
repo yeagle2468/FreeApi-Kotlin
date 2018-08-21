@@ -9,6 +9,7 @@ import java.util.*
  * Created by yeagle on 2018/8/15.
  */
 object PhoneSysUtil {
+    private val MIUI_TAG = "miui"
     private val MIUI_VERSION_CODE    = "ro.miui.ui.version.code"
     private val MIUI_VERSION_NAME    = "ro.miui.ui.version.name"
     private val MIUI_VERSION_STORAGE = "ro.miui.internal.storage"
@@ -19,16 +20,15 @@ object PhoneSysUtil {
     private var hasLoadedPro = false
 
     public fun isMIUI() : Boolean? {
-        if (checkSysMap.containsKey("miui"))
-            return checkSysMap.get("miui")
+        if (checkSysMap.containsKey(MIUI_TAG))
+            return checkSysMap.get(MIUI_TAG)
 
         loadInfo()
-
         val flag = properties.getProperty(MIUI_VERSION_CODE, null) != null
                 || properties.getProperty(MIUI_VERSION_NAME, null) != null
                 || properties.getProperty(MIUI_VERSION_STORAGE, null) != null
 
-        checkSysMap.put("miui", flag)
+        checkSysMap.put(MIUI_TAG, flag)
         return flag
     }
 

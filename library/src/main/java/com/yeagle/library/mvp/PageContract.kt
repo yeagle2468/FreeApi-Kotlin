@@ -8,12 +8,12 @@ import java.util.*
  */
 interface PageContract {
     interface View : IView {
-        fun onData(data : List<Objects>, refresh: Boolean, path: String)
+        fun onData(data : List<Any>, refresh: Boolean, path: String)
         fun onComplete(path: String)
     }
 
     interface Prestener : IPresenter<View> {
-        fun loadData(path: String, fresh: Boolean, token: TypeToken<Objects>)
-        fun loadData(path: String, fresh: Boolean, extraValue: Objects, token: TypeToken<Objects>)
+        fun loadData(path: String, fresh: Boolean, token: TypeToken<Any>)
+        fun loadData(path: String, fresh: Boolean, extraValue: Any, token: TypeToken<Any>)
     }
 }
